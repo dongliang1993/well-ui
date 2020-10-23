@@ -1,4 +1,4 @@
-import typescript from "rollup-plugin-typescript2";
+// import typescript from "rollup-plugin-typescript2";
 import clear from "rollup-plugin-clear";
 import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
@@ -36,9 +36,10 @@ module.exports = {
     }),
     resolve({ extensions }),
     commonjs(),
-    typescript({
-      tsconfig: "./tsconfig.json",
-    }),
+    // TODO: 没必要使用 ts 编译，只是想用 tsc 生成 .d.ts
+    // typescript({
+    //   tsconfig: "./tsconfig.json",
+    // }),
     babel({
       exclude: "node_modules/**",
       babelHelpers: "runtime",

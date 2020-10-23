@@ -7,7 +7,16 @@ module.exports = (api) => {
           modules: false,
           useBuiltIns: "usage",
           corejs: 3,
-          targets: { node: "current" },
+          targets: api.env("test")
+            ? { node: "current" }
+            : {
+                browsers: [
+                  "last 2 versions",
+                  "Firefox ESR",
+                  "> 1%",
+                  "ie >= 11",
+                ],
+              },
         },
       ],
       "@babel/preset-react",
@@ -19,8 +28,6 @@ module.exports = (api) => {
       "@babel/plugin-transform-runtime",
     ],
   };
-
-  api.cache(false);
 
   return config;
 };
