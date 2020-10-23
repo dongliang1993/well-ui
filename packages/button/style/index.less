@@ -1,4 +1,7 @@
+@import "../../style/var.less";
+
 .well-button {
+  outline: none;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -6,7 +9,6 @@
   line-height: 22px;
   padding: 4px 15px;
   border: 1px solid;
-
   border-color: rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   background-color: #fff;
@@ -15,6 +17,41 @@
 
   & > .loading {
     animation: button-loading-spin 1s linear infinite;
+  }
+
+  &:hover {
+    color: @brand;
+    border-color: @brand;
+    z-index: 1;
+  }
+
+  &.primary {
+    color: #fff;
+    background-color: @brand;
+    border-color: @brand;
+    &:hover {
+      background-color: @hover;
+      border-color: @hover;
+    }
+    &.ghost {
+      color: @brand;
+      border-color: @brand;
+      background-color: transparent;
+      &:hover {
+        color: @hover;
+        border-color: @hover;
+      }
+    }
+    &.disabled {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: #d9d9d9;
+      background-color: #e6e6e6;
+      cursor: not-allowed;
+      &:hover {
+        color: rgba(0, 0, 0, 0.25);
+        border-color: #d9d9d9;
+      }
+    }
   }
 }
 

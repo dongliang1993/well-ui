@@ -6,8 +6,10 @@
     "moduleResolution": "Node",
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "pretty": true,
     "jsx": "react",
-    "pretty": true
+    "noEmitHelpers": true,
+    "importHelpers": false
   },
   "include": ["packages"],
   "exclude": [

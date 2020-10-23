@@ -1,4 +1,7 @@
 import React, { useState, FC, useEffect } from "react";
+
+import Icon from "../icon";
+
 import { classes } from "../utils";
 import "./style/index.less";
 
@@ -10,6 +13,9 @@ interface ButtonProps {
   type?: "default" | "dashed" | "primary" | "danger";
   className?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
+  icon?: string;
+  position?: "left" | "right";
+  size?: "small" | "medium" | "large";
 }
 
 const Button: FC<ButtonProps> = ({
@@ -19,6 +25,8 @@ const Button: FC<ButtonProps> = ({
   disabled = false,
   children,
   className,
+  icon,
+  size,
 }) => {
   const [innerLoading, setLoading] = useState<boolean>(!!loading);
 
@@ -46,7 +54,13 @@ const Button: FC<ButtonProps> = ({
   };
 
   const renderIcon = () => {
-    return null;
+    const className = classes(componentName, "icon", [size], { loading });
+
+    return loading ? (
+      <Icon name="loading" className={className} />
+    ) : (
+      icon && <Icon name={icon} className={className} />
+    );
   };
 
   return (

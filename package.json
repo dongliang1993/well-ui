@@ -10,8 +10,8 @@
     "release": "standard-version",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
-    "build-type:cjs": "tsc --outDir lib",
-    "build-type:es": "tsc --outDir es",
+    "build-type:cjs": "tsc  --outDir lib",
+    "build-type:es": "tsc -w --outDir es",
     "build:type": "yarn build-type:cjs && yarn build-type:es",
     "build": "rollup -c && yarn build:type",
     "dev": "rollup -w -c"
@@ -42,9 +42,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.5.2",
-    "@laix/lls-ui": "^1.2.1",
-    "core-js": "^3.6.5",
-    "styled-components": "^5.2.0"
+    "core-js": "^3.6.5"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -76,12 +74,7 @@
     "rollup": "^2.32.1",
     "rollup-plugin-analyzer": "^3.3.0",
     "rollup-plugin-clear": "^2.0.7",
-    "rollup-plugin-less": "^1.1.2",
-    "rollup-plugin-less-modules": "^0.1.11",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^3.1.8",
-    "rollup-plugin-styles": "^3.11.0",
-    "rollup-plugin-typescript2": "^0.28.0",
     "standard-version": "^9.0.0",
     "typescript": "^4.0.3"
   }
