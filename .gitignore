@@ -1,0 +1,12 @@
+DS_Store
+.vscode/
+.cache/
+node_modules/
+npm-error.log*
+yarn-error.log*
+*.log
+
+# build
+es/
+lib/
+dist/
