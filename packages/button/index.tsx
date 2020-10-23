@@ -1,5 +1,6 @@
 import React, { useState, FC, useEffect } from "react";
 import { classes } from "../utils";
+import "./style/index.less";
 
 const componentName = "Button";
 
@@ -7,6 +8,7 @@ interface ButtonProps {
   loading?: boolean;
   disabled?: boolean;
   type?: "default" | "dashed" | "primary" | "danger";
+  className?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
@@ -15,11 +17,14 @@ const Button: FC<ButtonProps> = ({
   onClick,
   type = "default",
   disabled = false,
+  children,
+  className,
 }) => {
   const [innerLoading, setLoading] = useState<boolean>(!!loading);
 
-  const buttonClassName = classes(componentName, [type], {
+  const buttonClassName = classes(componentName, "", [type, className], {
     disabled,
+    loading,
   });
 
   useEffect(() => {
@@ -32,6 +37,7 @@ const Button: FC<ButtonProps> = ({
     if (innerLoading) {
       return;
     }
+
     if (onClick) {
       (onClick as React.MouseEventHandler<
         HTMLButtonElement | HTMLAnchorElement
@@ -39,9 +45,18 @@ const Button: FC<ButtonProps> = ({
     }
   };
 
+  const renderIcon = () => {
+    return null;
+  };
+
   return (
-    <button className={buttonClassName} onClick={handleClick}>
-      button
+    <button
+      className={buttonClassName}
+      onClick={handleClick}
+      disabled={disabled}
+    >
+      {renderIcon()}
+      {children}
     </button>
   );
 };

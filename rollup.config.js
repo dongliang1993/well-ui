@@ -1,9 +1,11 @@
 import typescript from "rollup-plugin-typescript2";
-import clear from "rollup-plugin-clear";
+// import clear from "rollup-plugin-clear";
 import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import analyze from "rollup-plugin-analyzer";
+import postcss from "rollup-plugin-postcss";
+
 import fs from "fs";
 const pkg = JSON.parse(fs.readFileSync("./package.json"));
 const external = Object.keys(pkg.dependencies || {});
@@ -19,23 +21,29 @@ module.exports = {
       format: "cjs",
       preserveModules: true,
       exports: "named",
+      assetFileNames: "[name][extname]",
     },
     {
       dir: "./es",
       format: "es",
       preserveModules: true,
       exports: "named",
+      assetFileNames: "[name][extname]",
     },
   ],
   external: (id) => {
     return external.concat(external2).find((item) => id.includes(item));
   },
   plugins: [
-    clear({
-      targets: ["lib", "es"],
-    }),
+    // clear({
+    //   targets: ["lib", "es"],
+    // }),
     resolve({ extensions }),
     commonjs(),
+    postcss({
+      extract: true,
+      namedExports: true,
+    }),
     // TODO: 没必要使用 ts 编译，只是想用 tsc 生成 .d.ts
     typescript({
       tsconfig: "./tsconfig.json",

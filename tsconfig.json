@@ -10,5 +10,11 @@
     "pretty": true
   },
   "include": ["packages"],
-  "exclude": ["node_modules", "lib", "es", "./src/**/*.test.ts"]
+  "exclude": [
+    "node_modules",
+    "lib",
+    "es",
+    "./packages/**/*.test.ts",
+    "./packages/**/*.less"
+  ]
 }

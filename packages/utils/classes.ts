@@ -3,6 +3,8 @@ const prefix = "well";
 function classes(componentName: string, ...args: any): string {
   const className: string[] = [];
 
+  console.log();
+
   args.forEach((arg: any) => {
     if (typeof arg === "string") {
       className.push(
