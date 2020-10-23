@@ -1,5 +1,5 @@
 {
-  "name": "platform-template-library",
+  "name": "well-ui",
   "version": "1.0.0",
   "description": "a template for library",
   "main": "lib/index.js",
