@@ -1,5 +1,4 @@
-import typescript from "rollup-plugin-typescript2";
-// import clear from "rollup-plugin-clear";
+import clear from "rollup-plugin-clear";
 import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
@@ -35,18 +34,14 @@ module.exports = {
     return external.concat(external2).find((item) => id.includes(item));
   },
   plugins: [
-    // clear({
-    //   targets: ["lib", "es"],
-    // }),
+    clear({
+      targets: ["lib", "es"],
+    }),
     resolve({ extensions }),
     commonjs(),
     postcss({
       extract: true,
       namedExports: true,
-    }),
-    // TODO: 没必要使用 ts 编译，只是想用 tsc 生成 .d.ts
-    typescript({
-      tsconfig: "./tsconfig.json",
     }),
     babel({
       exclude: "node_modules/**",
