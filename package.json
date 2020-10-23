@@ -10,9 +10,10 @@
     "release": "standard-version",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
-    "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "rollup -c",
-    "build": "npm run build:js && npm run build:types",
+    "build:types": "tsc",
+    "build:cjs": "rollup -c",
+    "build:es": "&& rollup -c",
+    "build": "rollup -c",
     "dev": "rollup -w -c"
   },
   "repository": {
@@ -43,12 +44,17 @@
     "@babel/runtime": "^7.5.2",
     "core-js": "^3.6.5"
   },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
@@ -61,6 +67,8 @@
     "husky": "^4.3.0",
     "lint-staged": "^10.4.2",
     "prettier": "^2.1.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "rollup": "^2.32.1",
     "rollup-plugin-analyzer": "^3.3.0",
     "rollup-plugin-clear": "^2.0.7",

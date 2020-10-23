@@ -7,11 +7,10 @@ module.exports = (api) => {
           modules: false,
           useBuiltIns: "usage",
           corejs: 3,
-          targets: api.env("test")
-            ? { node: "current" }
-            : { browsers: ["Android >= 4.4", "iOS >= 10"] },
+          targets: { node: "current" },
         },
       ],
+      "@babel/preset-react",
       "@babel/preset-typescript",
     ],
     plugins: [

@@ -1,17 +1,18 @@
+import typescript from "rollup-plugin-typescript2";
 import clear from "rollup-plugin-clear";
 import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import analyze from "rollup-plugin-analyzer";
-// import autoExternal from "rollup-plugin-auto-external";
 import fs from "fs";
 const pkg = JSON.parse(fs.readFileSync("./package.json"));
 const external = Object.keys(pkg.dependencies || {});
+const external2 = Object.keys(pkg.peerDependencies || {});
 
-const extensions = [".js", ".ts"];
+const extensions = [".js", ".ts", ".tsx", ".jsx"];
 
 module.exports = {
-  input: ["./src/index.ts"],
+  input: ["./packages/index.tsx"],
   output: [
     {
       dir: "./lib",
@@ -27,7 +28,7 @@ module.exports = {
     },
   ],
   external: (id) => {
-    return external.find((item) => id.includes(item));
+    return external.concat(external2).find((item) => id.includes(item));
   },
   plugins: [
     clear({
@@ -35,6 +36,9 @@ module.exports = {
     }),
     resolve({ extensions }),
     commonjs(),
+    typescript({
+      tsconfig: "./tsconfig.json",
+    }),
     babel({
       exclude: "node_modules/**",
       babelHelpers: "runtime",

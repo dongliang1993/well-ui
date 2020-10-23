@@ -4,11 +4,13 @@
     "module": "ES2015",
     "strict": true,
     "declaration": true,
+    "emitDeclarationOnly": true,
     "moduleResolution": "Node",
     "esModuleInterop": true,
-    "outDir": "./lib",
-    "importHelpers": false
+    "skipLibCheck": true,
+    "jsx": "react",
+    "pretty": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "lib", "esm", "./src/**/*.test.ts"]
+  "include": ["packages"],
+  "exclude": ["node_modules", "lib", "es", "./src/**/*.test.ts"]
 }
